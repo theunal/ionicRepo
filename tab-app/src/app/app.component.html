@@ -1,0 +1,39 @@
+<ion-app>
+
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Menü</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+
+        <ion-menu-toggle>
+          <ion-item routerLink='/tabs/tab1'>
+            <ion-icon name="home-outline" style="margin: 10px;"></ion-icon>
+            Ana Sayfa
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink='/tabs/tab2'>
+            <ion-icon name="videocam-outline" style="margin: 10px;"></ion-icon>
+            Video
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink='/tabs/tab3'>
+            <ion-icon name="navigate-outline" style="margin: 10px;"></ion-icon>
+            Harita
+          </ion-item>
+        </ion-menu-toggle>
+
+
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>
