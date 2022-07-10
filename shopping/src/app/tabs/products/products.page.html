@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>products</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar animated [(ngModel)]='searchText'></ion-searchbar>
+
+  <ion-card *ngFor="let product of products">
+    <ion-img src={{product.imageUrl}}></ion-img>
+
+    <ion-card-header>
+      <ion-card-title>
+        {{productTitle(product.name)}}
+        <span class="badge bg-success" style="font-size: 12px;">{{ product.inventoryQuantity }}</span>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <div class="row mx-auto" style="text-align: justify;">
+        {{ product.name }}
+        <p class="text-center mt-2" style="color: red; font-size: 30px;">{{product.price}} ₺</p>
+      </div>
+
+      <div class="row mt-3 mx-auto">
+        <ion-button expand="block" class="w-75 mx-auto">
+          Sepete Ekle
+          <i class="fa fa-shopping-basket mx-2"></i>
+        </ion-button>
+      </div>
+
+    </ion-card-content>
+
+
+
+  </ion-card>
+
+
+</ion-content>
