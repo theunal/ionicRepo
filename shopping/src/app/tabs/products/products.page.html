@@ -7,7 +7,7 @@
 <ion-content>
   <ion-searchbar animated [(ngModel)]='searchText'></ion-searchbar>
 
-  <ion-card *ngFor="let product of products">
+  <ion-card *ngFor="let product of products | productsFilterPipe : searchText">
     <ion-img src={{product.imageUrl}}></ion-img>
 
     <ion-card-header>

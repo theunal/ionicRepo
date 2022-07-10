@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ProductsPageRoutingModule } from './products-routing.module';
+import { ProductsFilterPipePipe } from '../../pipes/products-filter-pipe.pipe';
 
 import { ProductsPage } from './products.page';
 
@@ -15,6 +16,6 @@ import { ProductsPage } from './products.page';
     IonicModule,
     ProductsPageRoutingModule
   ],
-  declarations: [ProductsPage]
+  declarations: [ProductsPage, ProductsFilterPipePipe]
 })
 export class ProductsPageModule {}
