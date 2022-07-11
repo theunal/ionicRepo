@@ -1,3 +1,4 @@
+import { BasketAddDto } from './../models/basket/basketAddDto';
 import { Observable } from 'rxjs';
 import { Basket } from './../models/basket/basket';
 import { HttpClient } from '@angular/common/http';
@@ -19,5 +20,9 @@ export class BasketService {
         return this.httpClient.get<ListResponseModel<Basket>>(url)
     }
 
+    addBasket(basket: BasketAddDto) {
+        let url = this.url + 'add'
+        return this.httpClient.post(url, basket)
+    }
 
 }

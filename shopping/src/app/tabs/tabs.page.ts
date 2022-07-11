@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BasketService } from '../services/basket.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsPage implements OnInit {
 
-  constructor() { }
+  totalPrice: number = 0
+
+  constructor(private basketService: BasketService) { }
 
   ngOnInit() {
+    this.getTotalPrice()
+  }
+
+  getTotalPrice() {
+    this.basketService.getBaskets().subscribe(res => {
+      for (let basket of res.data)
+        this.totalPrice += basket.quantity * basket.product.price
+    }, err => {
+      console.log(err)
+    })
   }
 
 }

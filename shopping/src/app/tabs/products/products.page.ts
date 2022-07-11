@@ -1,7 +1,10 @@
+import { BasketAddDto } from './../../models/basket/basketAddDto';
 import { Product } from './../../models/product';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { ErrorServiceService } from './errorService/error-service.service';
+import { BasketService } from 'src/app/services/basket.service';
+import { ToastService } from './errorService/toast.service';
 
 @Component({
   selector: 'app-products',
@@ -12,9 +15,10 @@ export class ProductsPage implements OnInit {
 
   products: Product[]
 
-  searchText : string = ''
+  searchText: string = ''
 
-  constructor(private productService: ProductService, private errorService: ErrorServiceService) { }
+  constructor(private productService: ProductService, private errorService: ErrorServiceService,
+    private basketService: BasketService, private toast: ToastService) { }
 
   ngOnInit() {
     this.getProducts()
@@ -25,6 +29,17 @@ export class ProductsPage implements OnInit {
       this.products = res.data
     }, (err: any) => {
       this.errorService.presentToastWithOptions(err)
+    })
+  }
+
+  addBasket(productId: number) {
+    let dto: BasketAddDto = {
+      id: 0,
+      productId: productId,
+      quantity: 1
+    }
+    this.basketService.addBasket(dto).subscribe(res => {
+      this.toast.presentToastWithOptions(res)
     })
   }
 
