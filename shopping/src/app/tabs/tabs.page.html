@@ -1,17 +1,17 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
 
-    <ion-tab-button routerLink='/tabs'>
+    <ion-tab-button routerLink=''>
       <ion-label>Ana sayfa</ion-label>
       <ion-icon name="home-outline"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button routerLink='/tabs/basket'>
-      <ion-label>Sepet {{totalPrice}} ₺</ion-label>
+    <ion-tab-button routerLink='/basket'>
+      <ion-label>Sepet {{totalPrice() }} ₺</ion-label>
       <ion-icon name="basket-outline"></ion-icon>
     </ion-tab-button>
     
-    <ion-tab-button routerLink='/tabs/orders'>
+    <ion-tab-button >
       <ion-label>Siparişler</ion-label>
       <ion-icon name="reorder-four-outline"></ion-icon>
     </ion-tab-button>

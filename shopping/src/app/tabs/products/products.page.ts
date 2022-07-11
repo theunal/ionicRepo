@@ -1,45 +1,51 @@
-import { BasketAddDto } from './../../models/basket/basketAddDto';
+
 import { Product } from './../../models/product';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { ErrorServiceService } from './errorService/error-service.service';
 import { BasketService } from 'src/app/services/basket.service';
 import { ToastService } from './errorService/toast.service';
+import { BasketAddUpdateDeleteDto } from 'src/app/models/basket/basketAddUpdateDeleteDto';
+import { ViewDidEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
 })
-export class ProductsPage implements OnInit {
+export class ProductsPage implements ViewDidEnter {
 
-  products: Product[]
+  products: Product[] = []
 
   searchText: string = ''
 
   constructor(private productService: ProductService, private errorService: ErrorServiceService,
     private basketService: BasketService, private toast: ToastService) { }
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.getProducts()
   }
 
   getProducts() {
     this.productService.getProducts().subscribe(res => {
       this.products = res.data
+      console.log(res.data)
     }, (err: any) => {
       this.errorService.presentToastWithOptions(err)
     })
   }
 
   addBasket(productId: number) {
-    let dto: BasketAddDto = {
+    let dto: BasketAddUpdateDeleteDto = {
       id: 0,
       productId: productId,
       quantity: 1
     }
-    this.basketService.addBasket(dto).subscribe(res => {
+    this.basketService.add(dto).subscribe(res => {
       this.toast.presentToastWithOptions(res)
+      this.getProducts()
+    }, err => {
+      this.errorService.presentToastWithOptions(err)
     })
   }
 

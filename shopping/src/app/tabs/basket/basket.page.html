@@ -24,7 +24,7 @@
           </ion-col>
 
           <ion-col size="2" size-sm class="my-auto">
-            <button class="btn btn-sm btn-success">
+            <button class="btn btn-sm btn-success" (click)="increase(basket)">
               <i class="fa-solid fa-plus"></i>
             </button>
           </ion-col>
@@ -60,10 +60,10 @@
 
       <ion-row class="text-center">
         <ion-col size="5" size-sm class="my-auto text-center">
-          <span class="lead" style="font-size:30px"><strong id="totalPrice">{{totalPrice}} ₺</strong></span>
+          <span class="lead" style="font-size:30px"><strong id="totalPrice">{{totalPrice()}} ₺</strong></span>
         </ion-col>
         <ion-col size="7" size-sm class="my-auto">
-          <ion-button color="dark" style="padding: 5px" routerLink='/tabs'>Ödemeye Geç</ion-button>
+          <ion-button color="dark" style="padding: 5px" routerLink=''>Ödemeye Geç</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

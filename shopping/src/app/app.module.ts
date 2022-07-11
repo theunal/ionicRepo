@@ -17,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [
+  providers: [ //                https://webapi.angulareducation.com/api/baskets/update
     { provide: 'api', useValue: 'https://webapi.angulareducation.com/api/' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

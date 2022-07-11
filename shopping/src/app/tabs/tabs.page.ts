@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { ViewDidEnter } from '@ionic/angular';
 import { BasketService } from '../services/basket.service';
 
 @Component({
@@ -6,23 +7,23 @@ import { BasketService } from '../services/basket.service';
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
 })
-export class TabsPage implements OnInit {
+export class TabsPage implements OnInit, AfterContentChecked {
 
-  totalPrice: number = 0
+  total: number = 0
 
   constructor(private basketService: BasketService) { }
 
   ngOnInit() {
-    this.getTotalPrice()
   }
 
-  getTotalPrice() {
-    this.basketService.getBaskets().subscribe(res => {
-      for (let basket of res.data)
-        this.totalPrice += basket.quantity * basket.product.price
-    }, err => {
-      console.log(err)
-    })
+  ngAfterContentChecked(): void {
+    this.total = this.basketService.total
+  }
+
+
+  totalPrice() {
+    this.total = this.basketService.totalPrice()
+    return this.total
   }
 
 }
