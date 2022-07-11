@@ -1,9 +1,14 @@
-<ion-header collapse="condense" class="mt-4">
-
+<ion-header *ngIf="platformDetect() === 'ios'" collapse="condense" class="mt-4">
   <ion-toolbar>
     <ion-title size="large">Sepetim</ion-title>
   </ion-toolbar>
+</ion-header>
 
+<ion-header *ngIf="platformDetect() === 'other'">
+  <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-title>Sepetim</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 
@@ -24,7 +29,8 @@
           </ion-col>
 
           <ion-col size="2" size-sm class="my-auto">
-            <button class="btn btn-sm btn-success" (click)="increase(basket)">
+            <button [disabled]="basket.product.inventoryQuantity == 0" class="btn btn-sm btn-success"
+              (click)="increase(basket)">
               <i class="fa-solid fa-plus"></i>
             </button>
           </ion-col>
@@ -35,9 +41,15 @@
             </ion-input>
           </ion-col>
 
-          <ion-col size="2" size-sm class="my-auto">
-            <button class="btn btn-sm btn-warning">
+          <ion-col *ngIf="basket.quantity > 1" size="2" size-sm class="my-auto">
+            <button class="btn btn-sm btn-warning" (click)="reduce(basket)">
               <i class="fa-solid fa-minus"></i>
+            </button>
+          </ion-col>
+
+          <ion-col *ngIf="basket.quantity == 1" size="2" size-sm class="my-auto">
+            <button class="btn btn-sm btn-danger" (click)="delete(basket)">
+              <i class="fa-solid fa-trash-can"></i>
             </button>
           </ion-col>
 

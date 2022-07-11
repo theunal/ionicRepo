@@ -25,7 +25,7 @@ export class ToastService {
       message: any.message,
       icon: 'checkmark-circle-outline',
       position: 'top',
-      color: 'success',
+      color: color ? color : 'success',
       duration: 2000
     })
     await toast.present()

@@ -1,3 +1,4 @@
+import { LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Basket } from './../models/basket/basket';
 import { HttpClient } from '@angular/common/http';
@@ -18,17 +19,17 @@ export class BasketService {
     total: number = 0
 
 
-    constructor(@Inject('api') private api: string, private httpClient: HttpClient) { }
+    constructor(@Inject('api') private api: string, private httpClient: HttpClient, private loadingCtrl: LoadingController) { }
 
-    // getBaskets(): Observable<ListResponseModel<Basket>> {
-    //     let url = this.url + 'getlist'
-    //     return this.httpClient.get<ListResponseModel<Basket>>(url)
-    // }
-
-    getBaskets() {
+    async getBaskets() {
         let url = this.url + 'getlist'
+        await this.showLoading()
         this.httpClient.get<ListResponseModel<Basket>>(url).subscribe(res => {
+            this.loadingCtrl.dismiss()
             this.baskets = res.data
+        }, err => {
+            this.loadingCtrl.dismiss()
+            console.log('basket service getBaskets errow')
         })
     }
 
@@ -42,12 +43,23 @@ export class BasketService {
         return this.httpClient.post<ResponseModel>(url, basket)
     }
 
+    delete(basket: BasketAddUpdateDeleteDto): Observable<ResponseModel> {
+        let url = this.url + 'delete'
+        return this.httpClient.post<ResponseModel>(url, basket)
+    }
+
     totalPrice() {
         this.total = 0
         this.baskets.forEach(element => {
             this.total += element.product.price * element.quantity
         })
         return this.total
+    }
+
+    async showLoading() {
+        const loading = await this.loadingCtrl.create({
+        })
+        loading.present()
     }
 
 }

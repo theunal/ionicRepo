@@ -6,7 +6,7 @@ import { ErrorServiceService } from './errorService/error-service.service';
 import { BasketService } from 'src/app/services/basket.service';
 import { ToastService } from './errorService/toast.service';
 import { BasketAddUpdateDeleteDto } from 'src/app/models/basket/basketAddUpdateDeleteDto';
-import { ViewDidEnter } from '@ionic/angular';
+import { LoadingController, ViewDidEnter, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-products',
@@ -18,24 +18,32 @@ export class ProductsPage implements ViewDidEnter {
   products: Product[] = []
 
   searchText: string = ''
-
+  
   constructor(private productService: ProductService, private errorService: ErrorServiceService,
-    private basketService: BasketService, private toast: ToastService) { }
+    private basketService: BasketService, private toast: ToastService, private loadingCtrl: LoadingController,
+    private platform: Platform) { }
 
   ionViewDidEnter() {
     this.getProducts()
   }
 
-  getProducts() {
+  platformDetect() {
+    return this.platform.is('ios') ? 'ios' : 'other'
+  }
+
+  async getProducts() {
+    await this.showLoading()
     this.productService.getProducts().subscribe(res => {
+      this.loadingCtrl.dismiss()
       this.products = res.data
-      console.log(res.data)
     }, (err: any) => {
+      this.loadingCtrl.dismiss()
       this.errorService.presentToastWithOptions(err)
     })
   }
 
-  addBasket(productId: number) {
+  async addBasket(productId: number) {
+    await this.showLoading()
     let dto: BasketAddUpdateDeleteDto = {
       id: 0,
       productId: productId,
@@ -44,7 +52,9 @@ export class ProductsPage implements ViewDidEnter {
     this.basketService.add(dto).subscribe(res => {
       this.toast.presentToastWithOptions(res)
       this.getProducts()
+      this.loadingCtrl.dismiss()
     }, err => {
+      this.loadingCtrl.dismiss()
       this.errorService.presentToastWithOptions(err)
     })
   }
@@ -57,6 +67,13 @@ export class ProductsPage implements ViewDidEnter {
     newArray.map(item => result += item + ' ')
     result.trim()
     return result
+  }
+
+
+  async showLoading() {
+    const loading = await this.loadingCtrl.create({
+    })
+    loading.present()
   }
 
 }
