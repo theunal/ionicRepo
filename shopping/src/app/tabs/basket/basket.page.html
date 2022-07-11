@@ -1,0 +1,72 @@
+<ion-header collapse="condense" class="mt-4">
+
+  <ion-toolbar>
+    <ion-title size="large">Sepetim</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card *ngFor="let basket of baskets">
+    <ion-card-content>
+      <ion-grid>
+        <p style="text-align: justify; color: black; font-size: medium;">{{basket.product.name}}</p>
+        <ion-row class="mt-2">
+
+          <ion-col size="1" size-sm style="margin-right: 10px;" class="my-auto">
+            <ion-checkbox checked="true"></ion-checkbox>
+          </ion-col>
+
+          <ion-col size="4" size-sm class="mx-1 my-auto">
+            <ion-img src={{basket.product.imageUrl}}>
+            </ion-img>
+          </ion-col>
+
+          <ion-col size="2" size-sm class="my-auto">
+            <button class="btn btn-sm btn-success">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </ion-col>
+
+          <ion-col size="2" size-sm class="my-auto mx-auto">
+            <ion-input type="number">
+              {{basket.quantity}}
+            </ion-input>
+          </ion-col>
+
+          <ion-col size="2" size-sm class="my-auto">
+            <button class="btn btn-sm btn-warning">
+              <i class="fa-solid fa-minus"></i>
+            </button>
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-sm style="text-align: center;">
+            <p class="text-center mt-2" style="color: red; font-size: 30px;">{{basket.product.price}} ₺</p>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer collapse="fade">
+  <ion-toolbar>
+    <ion-grid>
+
+      <ion-row class="text-center">
+        <ion-col size="5" size-sm class="my-auto text-center">
+          <span class="lead" style="font-size:30px"><strong>{{totalPrice}} ₺</strong></span>
+        </ion-col>
+        <ion-col size="7" size-sm class="my-auto">
+          <ion-button color="dark" style="padding: 5px" routerLink='/tabs'>Ödemeye Geç</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+</ion-footer>
