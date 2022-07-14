@@ -18,6 +18,8 @@ export class ToastService {
         color: color,
         duration: 2000
       })
+      await toast.present()
+      return
     }
 
 

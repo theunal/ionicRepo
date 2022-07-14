@@ -15,7 +15,6 @@ export class TabsPage implements OnInit, AfterContentChecked {
   constructor(private basketService: BasketService, private router: Router) { }
 
   ngOnInit() {
-    console.log(this.router.url)
   }
 
   tabButtonColor(url: string, color?: string) {

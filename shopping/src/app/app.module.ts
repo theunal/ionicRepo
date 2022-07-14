@@ -7,17 +7,18 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { OrdersDatePipePipe } from './pipes/orders-date-pipe.pipe';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, OrdersDatePipePipe],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ //                https://webapi.angulareducation.com/api/baskets/update
+  providers: [
     { provide: 'api', useValue: 'https://webapi.angulareducation.com/api/' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
