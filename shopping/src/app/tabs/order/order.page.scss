@@ -1,7 +1,13 @@
 thead tr th,
 tbody tr td {
     text-align: center;
+    font-size: 15px;
 }
+
+tbody tr td ul li span {
+    float: right;
+}
+
 
 tbody tr td {
     vertical-align: middle;
@@ -179,4 +185,11 @@ body {
 
 .table-curved> :last-child> :last-child> :first-child {
     border-radius: 0 0 6px 6px;
+}
+
+
+
+ion-content ion-button {
+    width: 90%;
+    margin: auto;
 }
