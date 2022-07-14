@@ -19,6 +19,13 @@ export class BasketPage implements AfterContentChecked, ViewDidEnter {
   constructor(private basketService: BasketService, private toast: ToastService, private productService: ProductService,
     private loadingCtrl: LoadingController, private platform: Platform) { }
 
+  doRefresh(event : any) {
+    this.ionViewDidEnter()
+    setTimeout(() => {
+      event.target.complete()
+    }, 100)
+  }
+
   ngAfterContentChecked(): void {
     this.baskets = this.basketService.baskets
   }

@@ -18,10 +18,17 @@ export class ProductsPage implements ViewDidEnter {
   products: Product[] = []
 
   searchText: string = ''
-  
+
   constructor(private productService: ProductService, private errorService: ErrorServiceService,
     private basketService: BasketService, private toast: ToastService, private loadingCtrl: LoadingController,
     private platform: Platform) { }
+
+  doRefresh(event: any) {
+    this.getProducts()
+    setTimeout(() => {
+      event.target.complete()
+    }, 100)
+  }
 
   ionViewDidEnter() {
     this.getProducts()

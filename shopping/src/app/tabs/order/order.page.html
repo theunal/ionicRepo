@@ -14,6 +14,10 @@
 
 <ion-content>
 
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
     <div *ngFor="let sortedDate of sortedDates" class="mb-3">
 
         <ion-button color="light" expand="block" data-bs-toggle="collapse" attr.data-bs-target="#{{sortedDate.id}}"

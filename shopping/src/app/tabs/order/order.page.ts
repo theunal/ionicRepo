@@ -20,6 +20,13 @@ export class OrderPage implements OnInit {
 
   constructor(private orderService: OrderService, private toast: ToastService) { }
 
+  doRefresh(event: any) {
+    this.getOrders()
+    setTimeout(() => {
+      event.target.complete()
+    }, 100)
+  }
+
   ngOnInit() {
     this.getOrders()
   }
