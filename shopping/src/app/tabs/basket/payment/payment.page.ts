@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 import { Basket } from 'src/app/models/basket/basket';
 import { AddPayment } from 'src/app/models/payment/addPayment';
 import { BasketService } from 'src/app/services/basket.service';
@@ -24,7 +24,13 @@ export class PaymentPage implements OnInit, AfterContentChecked {
   showBasketButton: boolean = false
 
   constructor(private basketService: BasketService, private loadingCtrl: LoadingController, private toast: ToastService,
-    private paymentService: PaymentService, private errorService: ErrorServiceService, private router: Router) { }
+    private paymentService: PaymentService, private errorService: ErrorServiceService, private router: Router,
+    private platform: Platform) { }
+
+  platformDetect() {
+    return this.platform.is('ios') ? 'ios' : 'other'
+  }
+
 
   ngOnInit() {
     this.createPaymentForm()

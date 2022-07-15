@@ -1,13 +1,13 @@
 <ion-header *ngIf="platformDetect() === 'ios'" collapse="condense" class="mt-4">
   <ion-toolbar>
-    <ion-title size="large">Sepetim</ion-title>
+    <ion-title size="large">Sepet</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-header *ngIf="platformDetect() === 'other'">
   <ion-toolbar>
     <ion-menu-button slot="start"></ion-menu-button>
-    <ion-title>Sepetim</ion-title>
+    <ion-title>Sepet</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -75,6 +75,9 @@
 
 </ion-content>
 
+
+
+
 <ion-footer collapse="fade">
   <ion-toolbar>
     <ion-grid>
@@ -84,7 +87,7 @@
           <span class="lead" style="font-size:30px"><strong id="totalPrice">{{totalPrice()}} ₺</strong></span>
         </ion-col>
         <ion-col size="7" size-sm class="my-auto">
-          <ion-button color="dark" style="padding: 5px" routerLink='payment'>Ödemeye Geç</ion-button>
+          <ion-button color="dark" style="float: right;" routerLink='payment'>Ödemeye Geç</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

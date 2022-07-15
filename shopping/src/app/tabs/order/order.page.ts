@@ -1,3 +1,4 @@
+import { Platform } from '@ionic/angular';
 import { Order } from './../../models/order/order';
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
@@ -18,7 +19,11 @@ export class OrderPage implements OnInit {
   sortedDates: OrderDateButtonCollapseModel[] = []
   orderDate: Order[] = []
 
-  constructor(private orderService: OrderService, private toast: ToastService) { }
+  constructor(private orderService: OrderService, private toast: ToastService, private platform: Platform) { }
+
+  platformDetect() {
+    return this.platform.is('ios') ? 'ios' : 'other'
+  }
 
   doRefresh(event: any) {
     this.getOrders()
