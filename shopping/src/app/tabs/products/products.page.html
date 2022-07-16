@@ -1,8 +1,22 @@
-<ion-header *ngIf="platformDetect() === 'ios'" collapse="condense" >
-  <ion-toolbar>
-    <ion-title class="text-center">Ana Sayfa</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-fab vertical="bottom" horizontal="end" edge slot="fixed" class="mb-5">
+
+  <ion-fab-button color="danger">
+    <ion-icon name="person"></ion-icon>
+  </ion-fab-button>
+
+  <ion-fab-list side="end">
+    <ion-fab-button>
+      <ion-icon name="logo-vimeo"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+
+  <ion-fab-list side="top">
+    <ion-fab-button color="primary" routerLink="/login">
+      <i class="fa-solid fa-arrow-right-to-bracket"></i>
+    </ion-fab-button>
+  </ion-fab-list>
+
+</ion-fab>
 
 <ion-header *ngIf="platformDetect() === 'other'">
   <ion-toolbar>
@@ -10,8 +24,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-searchbar *ngIf="platformDetect() === 'ios'" animated [(ngModel)]='searchText'
-  placeholder="Ürün arayın"></ion-searchbar>
+<ion-searchbar *ngIf="platformDetect() === 'ios'" animated [(ngModel)]='searchText' placeholder="Ürün arayın">
+</ion-searchbar>
 
 <ion-searchbar *ngIf="platformDetect() === 'other'" class="mt-2" animated [(ngModel)]='searchText'
   placeholder="Ürün arayın"></ion-searchbar>
@@ -29,10 +43,8 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-
-
   <ion-card *ngFor="let product of products | productsFilterPipe : searchText">
-    <ion-img src={{product.imageUrl}} class="img-fluid mx-auto" style="width: 65%;"></ion-img>
+    <ion-img src={{product.imageUrl}} class="img-fluid mx-auto" style="width: 60%;"></ion-img>
 
     <ion-card-header>
       <ion-card-title>
@@ -63,6 +75,5 @@
 
 
   </ion-card>
-
 
 </ion-content>

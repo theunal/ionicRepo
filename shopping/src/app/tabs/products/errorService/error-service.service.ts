@@ -4,7 +4,7 @@ import { ToastController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
-export class ErrorServiceService {
+export class ErrorService {
 
   constructor(private toastr: ToastController) { }
 

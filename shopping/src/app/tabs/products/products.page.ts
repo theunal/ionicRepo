@@ -1,12 +1,12 @@
 
-import { Product } from './../../models/product';
+import { Product } from '../../models/product/product';
 import { Component } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
-import { ErrorServiceService } from './errorService/error-service.service';
 import { BasketService } from 'src/app/services/basket.service';
 import { ToastService } from './errorService/toast.service';
 import { BasketAddUpdateDeleteDto } from 'src/app/models/basket/basketAddUpdateDeleteDto';
 import { LoadingController, ViewDidEnter, Platform } from '@ionic/angular';
+import { ErrorService } from './errorService/error-service.service';
 
 @Component({
   selector: 'app-products',
@@ -19,7 +19,7 @@ export class ProductsPage implements ViewDidEnter {
 
   searchText: string = ''
 
-  constructor(private productService: ProductService, private errorService: ErrorServiceService,
+  constructor(private productService: ProductService, private errorService: ErrorService,
     private basketService: BasketService, private toast: ToastService, private loadingCtrl: LoadingController,
     private platform: Platform) { }
 

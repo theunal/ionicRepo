@@ -3,9 +3,9 @@ import { Observable } from 'rxjs';
 import { Basket } from './../models/basket/basket';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from "@angular/core";
-import { ListResponseModel } from '../models/listResponseModel';
-import { ResponseModel } from '../models/responseModel';
+import { ListResponseModel } from '../models/response/listResponseModel';
 import { BasketAddUpdateDeleteDto } from '../models/basket/basketAddUpdateDeleteDto';
+import { ResponseModel } from '../models/response/responseModel';
 
 
 @Injectable({

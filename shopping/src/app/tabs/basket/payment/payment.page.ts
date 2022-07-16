@@ -6,8 +6,8 @@ import { Basket } from 'src/app/models/basket/basket';
 import { AddPayment } from 'src/app/models/payment/addPayment';
 import { BasketService } from 'src/app/services/basket.service';
 import { PaymentService } from 'src/app/services/payment.service';
-import { ErrorServiceService } from '../../products/errorService/error-service.service';
 import { ToastService } from '../../products/errorService/toast.service';
+import { ErrorService } from '../../products/errorService/error-service.service';
 
 @Component({
   selector: 'app-payment',
@@ -24,7 +24,7 @@ export class PaymentPage implements OnInit, AfterContentChecked {
   showBasketButton: boolean = false
 
   constructor(private basketService: BasketService, private loadingCtrl: LoadingController, private toast: ToastService,
-    private paymentService: PaymentService, private errorService: ErrorServiceService, private router: Router,
+    private paymentService: PaymentService, private errorService: ErrorService, private router: Router,
     private platform: Platform) { }
 
   platformDetect() {
