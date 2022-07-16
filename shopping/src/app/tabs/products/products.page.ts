@@ -1,13 +1,14 @@
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { Product } from '../../models/product/product';
 import { Component, AfterContentChecked } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { BasketService } from 'src/app/services/basket.service';
-import { ToastService } from './errorService/toast.service';
 import { BasketAddUpdateDeleteDto } from 'src/app/models/basket/basketAddUpdateDeleteDto';
 import { LoadingController, ViewDidEnter, Platform } from '@ionic/angular';
-import { ErrorService } from './errorService/error-service.service';
+import { ErrorService } from 'src/app/services/error-service.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-products',
@@ -25,7 +26,7 @@ export class ProductsPage implements ViewDidEnter, AfterContentChecked {
 
   constructor(private productService: ProductService, private errorService: ErrorService,
     private basketService: BasketService, private toast: ToastService, private loadingCtrl: LoadingController,
-    private platform: Platform) { }
+    private platform: Platform, private router: Router) { }
 
   ngAfterContentChecked(): void {
     this.refresh()
@@ -96,11 +97,22 @@ export class ProductsPage implements ViewDidEnter, AfterContentChecked {
     return result
   }
 
-
   async showLoading() {
     const loading = await this.loadingCtrl.create({
     })
     loading.present()
   }
 
+  update(id: string) {
+    this.router.navigate([`product-update/${id}`])
+  }
+
+  delete(product: Product) {
+    this.productService.productDelete(product).subscribe(res => {
+      this.toast.presentToastWithOptions(res, 'tertiary')
+      this.getProducts()
+    }, err => {
+      console.log(err)
+    })
+  }
 }

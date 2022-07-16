@@ -89,8 +89,6 @@
         <ion-card>
           <ion-img src={{product.imageUrl}} class="img-fluid mx-auto" style="width: 40%;"></ion-img>
 
-
-
           <ion-card-content>
 
             <div class="row mx-auto" style="text-align: justify;">
@@ -106,9 +104,14 @@
             </div>
 
             <div class="row">
-              <ion-button *ngIf="admin" class="mx-auto btn-sm" color="warning" style="text-align: center;">
-                Düzenle
+              <ion-button *ngIf="admin" class="mx-auto btn-sm" color="warning" style="text-align: center;"
+                (click)="update(product.codeGuid)">
+                Güncelle
               </ion-button>
+              <ion-button *ngIf="admin" class="mx-auto btn-sm" color="danger" style="text-align: center;"
+              (click)="delete(product)">
+              Sil
+            </ion-button>
             </div>
 
           </ion-card-content>

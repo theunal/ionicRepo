@@ -6,8 +6,8 @@ import { Basket } from 'src/app/models/basket/basket';
 import { AddPayment } from 'src/app/models/payment/addPayment';
 import { BasketService } from 'src/app/services/basket.service';
 import { PaymentService } from 'src/app/services/payment.service';
-import { ToastService } from '../../products/errorService/toast.service';
-import { ErrorService } from '../../products/errorService/error-service.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { ErrorService } from 'src/app/services/error-service.service';
 
 @Component({
   selector: 'app-payment',

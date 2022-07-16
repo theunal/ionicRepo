@@ -4,19 +4,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProductAddPageRoutingModule } from './product-add-routing.module';
+import { ProductUpdatePageRoutingModule } from './product-update-routing.module';
 
-import { ProductAddPage } from './product-add.page';
+import { ProductUpdatePage } from './product-update.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProductAddPageRoutingModule,
+    ProductUpdatePageRoutingModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' })
   ],
-  declarations: [ProductAddPage]
+  declarations: [ProductUpdatePage]
 })
-export class ProductAddPageModule { }
+export class ProductUpdatePageModule { }

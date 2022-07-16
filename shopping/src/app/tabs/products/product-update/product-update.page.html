@@ -1,6 +1,7 @@
 <ion-header collapse="condense">
   <ion-toolbar>
-    <ion-title slot="start" size="large" class="mt-3">Ürün Ekle</ion-title>
+    <ion-back-button slot="start" defaultHref="/" text='Geri Dön'></ion-back-button>
+    <ion-title>Ürün Güncelle</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +10,7 @@
   <ion-card class="mt-5">
     <ion-card-content>
 
-      <form class="login100-form" [formGroup]="productAddForm" (ngSubmit)="productAdd()">
+      <form class="login100-form" [formGroup]="productUpdateForm" (ngSubmit)="productUpdate()">
 
         <div class="wrap-input101 m-b-23 mx-auto">
           <span class="label-input101">Ürün Adı</span>
@@ -41,20 +42,15 @@
           <span class="focus-input101"></span>
         </div>
 
-
         <div class="container-login100-form-btn">
           <div class="wrap-login100-form-btn">
             <div class="login100-form-bgbtn"></div>
             <button class="login100-form-btn" type="submit">
-              Gönder
+              Güncelle
             </button>
           </div>
         </div>
       </form>
-
-      
-   
-
 
     </ion-card-content>
   </ion-card>

@@ -2,8 +2,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product/product';
-import { ToastService } from '../products/errorService/toast.service';
-import { ErrorService } from '../products/errorService/error-service.service';
+import { ErrorService } from 'src/app/services/error-service.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-product-add',
@@ -13,6 +13,8 @@ import { ErrorService } from '../products/errorService/error-service.service';
 export class ProductAddPage implements OnInit {
 
   productAddForm: FormGroup
+
+  imageUrl : string = ''
 
   constructor(private productService: ProductService, private toast: ToastService, private errorService: ErrorService) { }
 

@@ -4,7 +4,7 @@ import { ViewDidEnter, LoadingController, Platform } from '@ionic/angular';
 import { Basket } from 'src/app/models/basket/basket';
 import { BasketService } from 'src/app/services/basket.service';
 import { ProductService } from 'src/app/services/product.service';
-import { ToastService } from '../products/errorService/toast.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-basket',

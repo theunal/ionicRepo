@@ -29,7 +29,7 @@ export class TabsPage implements OnInit, AfterContentChecked {
   refresh() {
     let token = localStorage.getItem('token')
     let expiration = this.jwtHelper.isTokenExpired(token)
-    if ((token !== null || token !== undefined) && !expiration) {
+    if (token /*&& !expiration*/) {
       let decode = this.jwtHelper.decodeToken(token)
       let roles: string[] = decode['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
       this.admin = roles.includes('admin' && 'Admin')

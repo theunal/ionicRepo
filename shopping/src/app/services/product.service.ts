@@ -4,6 +4,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/response/listResponseModel';
 import { ResponseModel } from '../models/response/responseModel';
+import { SingleResponseModel } from '../models/response/singleResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -26,23 +27,25 @@ export class ProductService {
     return this.httpClient.get<ListResponseModel<Product>>(url)
   }
 
+  getProductById(codeGuid: string): Observable<SingleResponseModel<Product>> {
+    let url = this.url + 'getById?guid=' + codeGuid
+    return this.httpClient.get<SingleResponseModel<Product>>(url)
+  }
+
   productAdd(product: Product): Observable<ResponseModel> {
     let url = this.url + 'add'
     return this.httpClient.post<ResponseModel>(url, product)
   }
 
-  // getProductById(codeGuid: string): Observable<SingleResponseModel<ProductModel>> {
-  //   let url = this.api + 'products/getById?guid=' + codeGuid
-  //   return this.httpClient.get<SingleResponseModel<ProductModel>>(url)
-  // }
-  // productUpdate(product: ProductModel): Observable<ResponseModel> {
-  //   let url = this.api + 'products/update'
-  //   return this.httpClient.post<ResponseModel>(url, product)
-  // }
-  // productDelete(product: ProductModel): Observable<ResponseModel> {
-  //   let url = this.api + 'products/delete'
-  //   return this.httpClient.post<ResponseModel>(url, product)
-  // }
+  productUpdate(product: Product): Observable<ResponseModel> {
+    let url = this.url + 'update'
+    return this.httpClient.post<ResponseModel>(url, product)
+  }
+
+  productDelete(product: Product): Observable<ResponseModel> {
+    let url = this.url + 'delete'
+    return this.httpClient.post<ResponseModel>(url, product)
+  }
 
 
 }

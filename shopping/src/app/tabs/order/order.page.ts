@@ -5,7 +5,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { SortOrdersByDatePipePipe } from 'src/app/pipes/sort-orders-by-date-pipe.pipe';
 import { OrdersDatePipePipe } from 'src/app/pipes/orders-date-pipe.pipe';
 import { OrderDateButtonCollapseModel } from 'src/app/models/order/orderDateButtonCollapseModel';
-import { ToastService } from '../products/errorService/toast.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-order',
