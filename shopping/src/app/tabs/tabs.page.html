@@ -6,26 +6,23 @@
       <ion-icon name="home-outline" [style]="tabButtonColor('/')"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button routerLink='/basket'>
+    <ion-tab-button *ngIf="!admin" routerLink='/basket'>
       <ion-label [style]="tabButtonColor('/basket')">Sepet <span
           [style]="tabButtonColor('/basket', 'red')">{{totalPrice()}}</span> ₺</ion-label>
       <ion-icon name="basket-outline" [style]="tabButtonColor('/basket')"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button routerLink='/order'>
+    <ion-tab-button *ngIf="!admin" routerLink='/order'>
       <ion-label [style]="tabButtonColor('/order')">Siparişler</ion-label>
       <ion-icon name="reorder-four-outline" [style]="tabButtonColor('/order')"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button>
-      <ion-label [style]="tabButtonColor('/order')">Siparişler</ion-label>
-      <ion-icon name="reorder-four-outline" [style]="tabButtonColor('/order')"></ion-icon>
+    <ion-tab-button  routerLink="/product-add">
+      <ion-label [style]="tabButtonColor('/product-add')">Ürün Ekle</ion-label>
+      <ion-icon name="add-circle-outline" [style]="tabButtonColor('/product-add')"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button>
-      <ion-label [style]="tabButtonColor('/order')">Siparişler</ion-label>
-      <ion-icon name="reorder-four-outline" [style]="tabButtonColor('/order')"></ion-icon>
-    </ion-tab-button>
+
 
 
 

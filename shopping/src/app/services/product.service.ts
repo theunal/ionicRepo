@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/response/listResponseModel';
+import { ResponseModel } from '../models/response/responseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,24 @@ export class ProductService {
     })
     return this.httpClient.get<ListResponseModel<Product>>(url)
   }
+
+  productAdd(product: Product): Observable<ResponseModel> {
+    let url = this.url + 'add'
+    return this.httpClient.post<ResponseModel>(url, product)
+  }
+
+  // getProductById(codeGuid: string): Observable<SingleResponseModel<ProductModel>> {
+  //   let url = this.api + 'products/getById?guid=' + codeGuid
+  //   return this.httpClient.get<SingleResponseModel<ProductModel>>(url)
+  // }
+  // productUpdate(product: ProductModel): Observable<ResponseModel> {
+  //   let url = this.api + 'products/update'
+  //   return this.httpClient.post<ResponseModel>(url, product)
+  // }
+  // productDelete(product: ProductModel): Observable<ResponseModel> {
+  //   let url = this.api + 'products/delete'
+  //   return this.httpClient.post<ResponseModel>(url, product)
+  // }
 
 
 }
