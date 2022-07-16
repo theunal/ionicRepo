@@ -19,7 +19,11 @@ export class BasketPage implements AfterContentChecked, ViewDidEnter {
   constructor(private basketService: BasketService, private toast: ToastService, private productService: ProductService,
     private loadingCtrl: LoadingController, private platform: Platform) { }
 
-  doRefresh(event : any) {
+  platformDetect() {
+    return this.platform.is('ios') ? 'ios' : 'other'
+  }
+
+  doRefresh(event: any) {
     this.ionViewDidEnter()
     setTimeout(() => {
       event.target.complete()
@@ -42,10 +46,6 @@ export class BasketPage implements AfterContentChecked, ViewDidEnter {
   totalPrice() {
     this.total = this.basketService.totalPrice()
     return this.total
-  }
-
-  platformDetect() {
-    return this.platform.is('ios') ? 'ios' : 'other'
   }
 
   increase(basket: Basket) {

@@ -1,6 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/" text="Geri Dön"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+
 <div class="limiter">
-  <div class="container-login100" >
-    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+  <div class="container-login100">
+    <div class="wrap-login100">
 
       <form class="login100-form validate-form" [formGroup]="loginForm" (ngSubmit)="login()">
 
@@ -31,7 +38,7 @@
           <div class="wrap-login100-form-btn">
             <div class="login100-form-bgbtn"></div>
             <button class="login100-form-btn" type="submit">
-              Login
+              Giriş
             </button>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { Platform } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
@@ -14,9 +15,14 @@ export class ProductAddPage implements OnInit {
 
   productAddForm: FormGroup
 
-  imageUrl : string = ''
+  imageUrl: string = ''
 
-  constructor(private productService: ProductService, private toast: ToastService, private errorService: ErrorService) { }
+  constructor(private productService: ProductService, private toast: ToastService,
+    private platform: Platform) { }
+
+  platformDetect() {
+    return this.platform.is('ios') ? 'ios' : 'other'
+  }
 
   ngOnInit() {
     this.createProductAddForm()

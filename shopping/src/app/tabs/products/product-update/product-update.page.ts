@@ -1,3 +1,4 @@
+import { Platform } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Product } from './../../../models/product/product';
 import { Component, OnInit } from '@angular/core';
@@ -14,12 +15,16 @@ import { ErrorService } from 'src/app/services/error-service.service';
 export class ProductUpdatePage implements OnInit {
 
   product: Product
-  imageUrl : string = ''
+  imageUrl: string = ''
 
   productUpdateForm: FormGroup
 
   constructor(private activatedRoute: ActivatedRoute, private productService: ProductService,
-    private toast: ToastService, private errorService: ErrorService) { }
+    private toast: ToastService, private errorService: ErrorService, private platform: Platform) { }
+
+  platformDetect() {
+    return this.platform.is('ios') ? 'ios' : 'other'
+  }
 
   ngOnInit() {
     this.getProductById()

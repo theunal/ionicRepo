@@ -1,6 +1,14 @@
-<ion-header collapse="condense">
+<ion-header *ngIf="platformDetect() === 'ios'"  collapse="condense">
   <ion-toolbar>
     <ion-back-button slot="start" defaultHref="/" text='Geri Dön'></ion-back-button>
+    <ion-title>Ürün Güncelle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header *ngIf="platformDetect() === 'other'">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/"></ion-back-button>
+    <ion-menu-button slot="start"></ion-menu-button>
     <ion-title>Ürün Güncelle</ion-title>
   </ion-toolbar>
 </ion-header>
