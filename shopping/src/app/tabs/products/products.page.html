@@ -43,37 +43,82 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-card *ngFor="let product of products | productsFilterPipe : searchText">
-    <ion-img src={{product.imageUrl}} class="img-fluid mx-auto" style="width: 60%;"></ion-img>
+  <div *ngIf="!admin">
+    <ion-card *ngFor="let product of products | productsFilterPipe : searchText">
+      <ion-img src={{product.imageUrl}} class="img-fluid mx-auto" style="width: 60%;"></ion-img>
 
-    <ion-card-header>
-      <ion-card-title>
-        {{productTitle(product.name)}}
-        <span *ngIf="product.inventoryQuantity" class="badge bg-success" style="font-size: 12px;">{{
-          product.inventoryQuantity }}</span>
-        <span *ngIf="!product.inventoryQuantity" class="badge bg-danger" style="font-size: 12px;">Stokta Yok</span>
-      </ion-card-title>
-    </ion-card-header>
+      <ion-card-header>
+        <ion-card-title>
+          {{productTitle(product.name)}}
+          <span *ngIf="product.inventoryQuantity" class="badge bg-success" style="font-size: 12px;">{{
+            product.inventoryQuantity }}</span>
+          <span *ngIf="!product.inventoryQuantity" class="badge bg-danger" style="font-size: 12px;">Stokta Yok</span>
+        </ion-card-title>
+      </ion-card-header>
 
-    <ion-card-content>
+      <ion-card-content>
 
-      <div class="row mx-auto" style="text-align: justify;">
-        {{ product.name }}
-        <p class="text-center mt-2" style="color: red; font-size: 30px;">{{product.price}} ₺</p>
-      </div>
+        <div class="row mx-auto" style="text-align: justify;">
+          {{ product.name }}
+          <p class="text-center mt-2" style="color: red; font-size: 30px;">{{product.price}} ₺</p>
+        </div>
 
-      <div class="row mt-3 mx-auto">
-        <ion-button [disabled]="!product.inventoryQuantity" expand="block" class="w-75 mx-auto"
-          (click)="addBasket(product.id)">
-          Sepete Ekle
-          <i class="fa fa-shopping-basket mx-2"></i>
-        </ion-button>
-      </div>
+        <div class="row mt-3 mx-auto">
+          <ion-button *ngIf="!admin" [disabled]="!product.inventoryQuantity" expand="block" class="w-75 mx-auto"
+            (click)="addBasket(product.id)">
+            Sepete Ekle
+            <i class="fa fa-shopping-basket mx-2"></i>
+          </ion-button>
 
-    </ion-card-content>
+          <ion-button *ngIf="admin" expand="block" class="w-75 mx-auto" color="warning">
+            Düzenle
+            <ion-icon name="pencil" class="mx-2"></ion-icon>
+          </ion-button>
+        </div>
+
+      </ion-card-content>
 
 
 
-  </ion-card>
+    </ion-card>
+  </div>
+
+  <ion-grid *ngIf="admin">
+    <ion-row>
+      <ion-col size="6" *ngFor="let product of products | productsFilterPipe : searchText">
+        <ion-card>
+          <ion-img src={{product.imageUrl}} class="img-fluid mx-auto" style="width: 40%;"></ion-img>
+
+
+
+          <ion-card-content>
+
+            <div class="row mx-auto" style="text-align: justify;">
+              <span style="font-size: 13px;">
+                {{ product.name }}
+              </span>
+              <span *ngIf="product.inventoryQuantity" class="badge bg-success mt-1" style="font-size: 12px;">
+                Stok Adedi : {{ product.inventoryQuantity }}</span>
+              <span *ngIf="!product.inventoryQuantity" class="badge bg-danger" style="font-size: 12px;">
+                Stokta Yok
+              </span>
+              <p class="text-center mt-2" style="color: red; font-size: 12px;">{{product.price}} ₺</p>
+            </div>
+
+            <div class="row">
+              <ion-button *ngIf="admin" class="mx-auto btn-sm" color="warning" style="text-align: center;">
+                Düzenle
+              </ion-button>
+            </div>
+
+          </ion-card-content>
+
+
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 </ion-content>

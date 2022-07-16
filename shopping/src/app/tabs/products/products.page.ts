@@ -1,6 +1,7 @@
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { Product } from '../../models/product/product';
-import { Component } from '@angular/core';
+import { Component, AfterContentChecked } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { BasketService } from 'src/app/services/basket.service';
 import { ToastService } from './errorService/toast.service';
@@ -13,7 +14,10 @@ import { ErrorService } from './errorService/error-service.service';
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
 })
-export class ProductsPage implements ViewDidEnter {
+export class ProductsPage implements ViewDidEnter, AfterContentChecked {
+
+  jwtHelper = new JwtHelperService()
+  admin: boolean = false
 
   products: Product[] = []
 
@@ -22,6 +26,22 @@ export class ProductsPage implements ViewDidEnter {
   constructor(private productService: ProductService, private errorService: ErrorService,
     private basketService: BasketService, private toast: ToastService, private loadingCtrl: LoadingController,
     private platform: Platform) { }
+
+  ngAfterContentChecked(): void {
+    this.refresh()
+  }
+
+  refresh() {
+    let token = localStorage.getItem('token')
+    let expiration = this.jwtHelper.isTokenExpired(token)
+    if ((token !== null || token !== undefined) && !expiration) {
+      let decode = this.jwtHelper.decodeToken(token)
+      let roles: string[] = decode['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+      this.admin = roles.includes('admin' && 'Admin')
+      return
+    }
+    this.admin = false
+  }
 
   doRefresh(event: any) {
     this.getProducts()

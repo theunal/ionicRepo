@@ -33,7 +33,9 @@ export class TabsPage implements OnInit, AfterContentChecked {
       let decode = this.jwtHelper.decodeToken(token)
       let roles: string[] = decode['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
       this.admin = roles.includes('admin' && 'Admin')
+      return
     }
+    this.admin = false
   }
 
   tabButtonColor(url: string, color?: string) {

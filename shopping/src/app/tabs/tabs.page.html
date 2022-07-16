@@ -17,7 +17,7 @@
       <ion-icon name="reorder-four-outline" [style]="tabButtonColor('/order')"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button  routerLink="/product-add">
+    <ion-tab-button *ngIf="admin" routerLink="/product-add">
       <ion-label [style]="tabButtonColor('/product-add')">Ürün Ekle</ion-label>
       <ion-icon name="add-circle-outline" [style]="tabButtonColor('/product-add')"></ion-icon>
     </ion-tab-button>
