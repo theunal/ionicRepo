@@ -1,6 +1,13 @@
-# ionicRepo
+# android live çalıştırma komutu
+
+projeyi aşağıdaki komut ile build ediyoruz
+```bash
+ng build
+```
 
 
-### android live çalıştırma komutu >> ionic cap run android -l --external 
 
+```bash
+ionic cap run android -l --external 
+```
 
