@@ -33,7 +33,6 @@ export class LoginPage implements OnInit {
       this.loginService.login(this.loginForm.value).subscribe(res => {
         localStorage.setItem('token', res.data.token)
         this.router.navigate([''])
-        console.log(res)
         this.toast.presentToastWithOptions('Giriş Başarılı', 'success')
       }, err => {
         this.errorService.presentToastWithOptions(err)

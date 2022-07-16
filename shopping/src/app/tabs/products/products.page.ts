@@ -1,3 +1,4 @@
+import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -24,12 +25,15 @@ export class ProductsPage implements ViewDidEnter, AfterContentChecked {
 
   searchText: string = ''
 
+  isAuth: boolean = false
+
   constructor(private productService: ProductService, private errorService: ErrorService,
     private basketService: BasketService, private toast: ToastService, private loadingCtrl: LoadingController,
-    private platform: Platform, private router: Router) { }
+    private platform: Platform, private router: Router, private LoginService: LoginService) { }
 
   ngAfterContentChecked(): void {
     this.refresh()
+    this.isAuth = this.LoginService.isAuthenticated()
   }
 
   refresh() {
@@ -114,5 +118,10 @@ export class ProductsPage implements ViewDidEnter, AfterContentChecked {
     }, err => {
       console.log(err)
     })
+  }
+
+  logout() {
+    this.LoginService.logout()
+    this.toast.presentToastWithOptions('Çıkış Yaptınız', 'dark')
   }
 }

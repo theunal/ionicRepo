@@ -10,8 +10,14 @@
     </ion-fab-button>
   </ion-fab-list>
 
-  <ion-fab-list side="top">
+  <ion-fab-list *ngIf="!isAuth" side="top">
     <ion-fab-button color="primary" routerLink="/login">
+      <i class="fa-solid fa-arrow-right-to-bracket"></i>
+    </ion-fab-button>
+  </ion-fab-list>
+
+  <ion-fab-list *ngIf="isAuth" side="top">
+    <ion-fab-button color="warning" (click)="logout()">
       <i class="fa-solid fa-arrow-right-to-bracket"></i>
     </ion-fab-button>
   </ion-fab-list>
@@ -109,9 +115,9 @@
                 Güncelle
               </ion-button>
               <ion-button *ngIf="admin" class="mx-auto btn-sm" color="danger" style="text-align: center;"
-              (click)="delete(product)">
-              Sil
-            </ion-button>
+                (click)="delete(product)">
+                Sil
+              </ion-button>
             </div>
 
           </ion-card-content>
