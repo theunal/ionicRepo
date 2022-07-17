@@ -14,4 +14,4 @@ ionic cap run android -l --external
 3 - eğer gradle build hatası verirse android studio üzerinde projeyi açıp gradle versiyonunu güncelleyin
 
 
-[Projenin apk halini buradan indirebilirsiniz](https://s2.dosya.tc/server18/3phiwn/app-debug.apk.html)
+[Projenin apk halini buradan indirebilirsiniz](https://www.dosya.tc/server37/grstdx/angularshop2.apk.html)
